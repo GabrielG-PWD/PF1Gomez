@@ -10,11 +10,13 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { FullNamePipe } from './pipes/full-name.pipe';
 import { ControlErrorMessagePipe } from './pipes/control-error-message.pipe';
+import { TamanoLetraDirective } from './directives/tamano-letra.directive';
 
 @NgModule({
   declarations: [
     FullNamePipe,
-    ControlErrorMessagePipe
+    ControlErrorMessagePipe,
+    TamanoLetraDirective
   ],
   imports: [
     CommonModule
@@ -29,7 +31,8 @@ import { ControlErrorMessagePipe } from './pipes/control-error-message.pipe';
     MatDialogModule,
     MatTableModule,
     FullNamePipe,
-    ControlErrorMessagePipe
+    ControlErrorMessagePipe,
+    TamanoLetraDirective
   ]
 })
 

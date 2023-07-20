@@ -1,8 +1,9 @@
+<h2 appTamanoLetra> Administrar estudiantes </h2>
 <div class="flex flex-column gap-6 align-items-center">
     <button mat-stroked-button type="button" color="basic" (click)="onCreateUser()">
         <mat-icon>add</mat-icon>
-        Crear Usuario
+        Agregar Estudiante
     </button>
-    
+
     <app-users-table [dataSource]="users"></app-users-table>
 </div>
