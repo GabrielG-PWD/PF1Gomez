@@ -25,8 +25,6 @@ export class UsersComponent {
     dialogRef.afterClosed().subscribe({
       next: (v) => {
         if (v) {
-          console.log('Recibimos el valor', v);
-
           this.users = [
             ...this.users, {
               id: this.users.length + 1,

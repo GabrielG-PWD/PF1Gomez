@@ -9,10 +9,10 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class UserFormDialogComponent {
   nameControl = new FormControl(null, [Validators.required, Validators.minLength(3)]);
-  surnameControl = new FormControl(null, [Validators.required]);
-  emailControl = new FormControl(null, [Validators.required]);
+  surnameControl = new FormControl(null, [Validators.required, Validators.minLength(3)]);
+  emailControl = new FormControl(null, [Validators.required, Validators.email]);
   passwordControl = new FormControl(null, [Validators.required]);
-  gradeControl = new FormControl(null, [Validators.required]);
+  gradeControl = new FormControl(null, [Validators.required, Validators.min(0), Validators.max(10)]);
 
   userForm = new FormGroup({
     name: this.nameControl,
