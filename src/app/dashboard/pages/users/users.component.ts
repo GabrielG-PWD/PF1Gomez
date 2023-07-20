@@ -1,5 +1,12 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { UserFormDialogComponent } from './components/user-form-dialog/user-form-dialog.component';
+import { User } from './models';
+
+const ELEMENT_DATA: User[] = [
+  {id:1, name:'Enzo', surname:'Fernandez', email:'Efe@mail.com', password:'Ef14Kbz', grade:8}
+];
+
 
 @Component({
   selector: 'app-users',
@@ -8,21 +15,32 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 
 export class UsersComponent {
-  nameControl = new FormControl(null, [Validators.required, Validators.minLength(3)]);
-  surnameControl = new FormControl(null, [Validators.required]);
-  emailControl = new FormControl(null, [Validators.required]);
-  passwordControl = new FormControl(null, [Validators.required]);
-  gradeControl = new FormControl(null, [Validators.required]);
+  public users: User[] = ELEMENT_DATA;
+  constructor(private matDialog: MatDialog) {
+  }
 
-  userForm = new FormGroup({
-    name: this.nameControl,
-    surname: this.surnameControl,
-    email: this.emailControl,
-    password: this.passwordControl,
-    grade: this.gradeControl
-  })
 
-  onSubmit(): void {
-    alert(JSON.stringify(this.userForm.value))
+  onCreateUser():void {
+    const dialogRef = this.matDialog.open(UserFormDialogComponent);
+    dialogRef.afterClosed().subscribe({
+      next: (v) => {
+        if (v) {
+          console.log('Recibimos el valor', v);
+
+          this.users = [
+            ...this.users, {
+              id: this.users.length + 1,
+              name: v.name,
+              surname: v.surname,
+              email: v.email,
+              password: v.password,
+              grade: v.grade
+            }
+          ]
+        } else {
+          console.log('Se cancelo');
+        }
+      }
+    })
   }
 }
